@@ -26,10 +26,6 @@ export default new Vuex.Store({
 
   },
     getters : {
-        filterNames : (state) => (search) => {
-            let filter = new RegExp(search, 'i')
-            return state.names.filter(el => el.match(filter))
-        }
 
     },
   mutations: {

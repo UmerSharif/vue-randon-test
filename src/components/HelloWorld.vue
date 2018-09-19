@@ -16,7 +16,7 @@
 
 <script>
 
-    import {mapGetters, mapState} from 'vuex'
+    import {mapGetters, mapState, mapMutations} from 'vuex'
 
     export default {
         name: 'HelloWorld',
@@ -30,13 +30,12 @@
             ...mapState([
                 'names'
             ]),
-            ...mapGetters([
-                'filterNames'
-            ]),
-            filterHeroNames() {
-               return this.filterNames(this.findName)
+
+            filterNames(){
+                let filter = new RegExp(this.findName, 'i')
+                return this.names.filter(el => el.match(filter))
             }
-        }
+        },
 
     }
 </script>
