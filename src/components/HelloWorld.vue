@@ -7,7 +7,7 @@
 
         <hr>
         <ul>
-            <li v-for="(name, index) in names" :key="index">
+            <li v-for="(name, index) in filterNames" :key="index">
                 {{name}}
             </li>
         </ul>
