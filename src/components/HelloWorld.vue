@@ -20,22 +20,6 @@
 
     export default {
         name: 'HelloWorld',
-        data() {
-            return {
-                findName: ''
-            }
-        },
-
-        computed: {
-            ...mapState([
-                'names'
-            ]),
-
-            filterNames(){
-                let filter = new RegExp(this.findName, 'i')
-                return this.names.filter(el => el.match(filter))
-            }
-        },
 
     }
 </script>
