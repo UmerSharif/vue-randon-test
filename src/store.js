@@ -4,22 +4,20 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+    state: {
 
-      title : 'To Do List',
+        title: 'To Do List',
 
-      Tasks : [
-          'Just Do it'
-      ]
+        Tasks: [
 
-  },
-    getters : {
+        ]
 
     },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+    getters: {},
+    mutations: {
+        ADD_TASK(state, newTask) {
+            state.Tasks.push(newTask)
+        }
+    },
+    actions: {}
 })
