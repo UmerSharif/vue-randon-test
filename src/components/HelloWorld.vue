@@ -6,10 +6,10 @@
             <input class="enterText" placeholder="Enter Task" v-model="newTask" />
             <button type="submit">Add</button>
         </form>
-
+<hr/>
         <ul>
 
-            <li v-for="(task, index) in Tasks" :key="index" :class="{completed : task.isComplete}">
+            <li v-for="(task, index) in Tasks" :key="index" :class="task.isComplete ? 'completed' : 'notCompleted'">
 
 
 
@@ -80,32 +80,48 @@
         li {
             list-style: none outside none;
             padding: 10px;
-          border: 1px solid $border-color;
             margin-top: 5px;
             width: 100%;
             display: flex;
+            border-radius: 2px;
 
         }
 
         input {
             padding: 12px;
             width: 100%;
-            border: 1px solid $border-color;
+            border: 1px solid bisque;
             font-size: 22px;
-        }
+            border-radius: 2px;
+                background-color: bisque;
+        }& :focus {
+        outline: bisque;
+                 }
 
         hr {
             width: 291px;
+            margin-top: 15px;
         }
 
         button {
             padding: 10px;
             width: 294px;
             margin-top: 5px;
+            background-color: #1e999e;
+            border: 1px solid #1e999e;
+            border-radius: 2px;
+            font-size: 1rem;
+            color: beige;
         }
 
         .completed {
-            border: 1px solid aquamarine;
+            border: 1px solid #d5e5c2;
+            background-color: #d5e5c2;
+        }
+
+        .notCompleted {
+            background-color: #fe8484;
+            border: 1px solid #fe8484;
         }
 
 
@@ -121,6 +137,10 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+        }
+
+        label {
+            color: #3a3d44;
         }
 
         /* Hide the browser's default checkbox */
@@ -149,7 +169,7 @@
 
         /* When the checkbox is checked, add a blue background */
         .container input:checked ~ .checkmark {
-            background-color: #2196F3;
+            background-color: #81b642;
         }
 
         /* Create the checkmark/indicator (hidden when not checked) */

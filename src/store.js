@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
 
-        title: 'To Do List',
+        title: 'To-Do List',
 
         Tasks: [
 
