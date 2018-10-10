@@ -52,8 +52,10 @@
                'ADD_TASK'
             ]),
             addTask(){
-                this.ADD_TASK({Title : this.newTask, isComplete : false})
-                this.newTask = ''
+                if(this.newTask !== '') {
+                    this.ADD_TASK({Title: this.newTask, isComplete: false})
+                    this.newTask = ''
+                }
             }
         }
 
