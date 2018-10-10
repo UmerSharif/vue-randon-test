@@ -52,13 +52,18 @@
             },
 
             ...mapMutations([
-                'ADD_TASK'
+                'ADD_TASK',
+                'DELETE_TASK'
             ]),
             addTask() {
                 if (this.newTask !== '') {
                     this.ADD_TASK({Title: this.newTask, isComplete: false})
                     this.newTask = ''
                 }
+            },
+
+            onDelete(index) {
+              this.DELETE_TASK(index)
             }
         }
 
@@ -123,8 +128,10 @@
         }
 
         hr {
-            width: 291px;
+            width: 288px;
             margin-top: 15px;
+            border: 3px solid;
+            color: bisque;
         }
 
         button {

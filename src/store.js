@@ -17,6 +17,10 @@ export default new Vuex.Store({
     mutations: {
         ADD_TASK(state, newTask) {
             state.Tasks.push(newTask)
+        },
+
+        DELETE_TASK(state, index){
+            state.Tasks.splice(index,1)
         }
     },
     actions: {}
