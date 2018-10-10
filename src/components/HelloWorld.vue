@@ -2,21 +2,24 @@
     <div class="hello">
         <h1>{{title}}</h1>
 
-        <form @submit.prevent = "addTask">
-            <input class="enterText" placeholder="Enter Task" v-model="newTask" />
-            <button type="submit">Add</button>
+        <form @submit.prevent="addTask">
+            <input class="enterText" placeholder="Enter Task" v-model="newTask"/>
+            <button type="submit"><font-awesome-icon icon="plus-circle" size="lg" class="plus-circle" /></button>
         </form>
-<hr/>
+        <hr/>
         <ul>
 
             <li v-for="(task, index) in Tasks" :key="index" :class="task.isComplete ? 'completed' : 'notCompleted'">
 
 
-
                 <label class="container">{{task.Title}}
-                    <input  type="checkbox" @change="changeCheck(task)" :checked="task.isComplete" />
+                    <input type="checkbox" @change="changeCheck(task)" :checked="task.isComplete"/>
                     <span class="checkmark"></span>
                 </label>
+                <span class="icons">
+                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon"/></span>
+                <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onDelete(index)"/></span>
+                </span>
             </li>
 
         </ul>
@@ -29,13 +32,13 @@
 
     export default {
         name: 'HelloWorld',
-        data(){
+        data() {
             return {
-                newTask : ''
+                newTask: ''
             }
         },
 
-        computed :{
+        computed: {
             ...mapState([
                 'title',
                 'Tasks'
@@ -49,10 +52,10 @@
             },
 
             ...mapMutations([
-               'ADD_TASK'
+                'ADD_TASK'
             ]),
-            addTask(){
-                if(this.newTask !== '') {
+            addTask() {
+                if (this.newTask !== '') {
                     this.ADD_TASK({Title: this.newTask, isComplete: false})
                     this.newTask = ''
                 }
@@ -60,14 +63,12 @@
         }
 
 
-
-
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    $border-color : #333a4f;
+    $border-color: #333a4f;
     .hello {
 
         h1 {
@@ -85,8 +86,28 @@
             margin-top: 5px;
             width: 100%;
             display: flex;
+            justify-content: space-between;
             border-radius: 2px;
 
+            .icons {
+                display: flex;
+                align-items: center;
+                font-size: 1rem;
+
+                .edit{
+                    margin-right: 8px;
+                    cursor: pointer;
+                }
+
+                .edit-icon {
+                        color: #5f5f5f;
+                }
+
+                .delete {
+                    color: #5f5f5f;
+                    cursor: pointer;
+                }
+            }
         }
 
         input {
@@ -95,10 +116,11 @@
             border: 1px solid bisque;
             font-size: 22px;
             border-radius: 2px;
-                background-color: bisque;
-        }& :focus {
-        outline: bisque;
-                 }
+            background-color: bisque;
+        }
+        & :focus {
+            outline: bisque;
+        }
 
         hr {
             width: 291px;
@@ -114,6 +136,7 @@
             border-radius: 2px;
             font-size: 1rem;
             color: beige;
+            cursor: pointer;
         }
 
         .completed {
@@ -125,7 +148,6 @@
             background-color: #fe8484;
             border: 1px solid #fe8484;
         }
-
 
         //custom checkbox css
         .container {
