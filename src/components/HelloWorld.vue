@@ -17,7 +17,7 @@
                     <span class="checkmark"></span>
                 </label>
                 <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon"/></span>
+                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon" @click="editTask($event,list)"/></span>
                 <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onDelete(index)"/></span>
                 </span>
             </li>
@@ -49,6 +49,11 @@
 
             changeCheck(task) {
                 task.isComplete = !task.isComplete
+            },
+
+            editTask(e) {
+                e.preventDefault();
+                console.log(e.target.innerText)
             },
 
             ...mapMutations([
