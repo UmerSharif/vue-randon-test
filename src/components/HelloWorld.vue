@@ -17,7 +17,7 @@
                     <span class="checkmark"></span>
                 </label>
                 <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon" @click="editTask()"/></span>
+                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon" @click="editTask(task)"/></span>
                 <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onDelete(index)"/></span>
                 </span>
             </li>
@@ -34,7 +34,9 @@
         name: 'HelloWorld',
         data() {
             return {
-                newTask: ''
+                newTask: '',
+                editID : '',
+                editInput: ''
             }
         },
 
@@ -51,8 +53,10 @@
                 task.isComplete = !task.isComplete
             },
 
-            editTask() {
-
+            editTask(task) {
+                this.editID = task.id
+                this.editInput = task.Title
+console.log(this.editInput)
             },
 
             ...mapMutations([
