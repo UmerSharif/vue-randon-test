@@ -11,7 +11,11 @@
 
             <li v-for="(task, index) in Tasks" :key="index" :class="task.isComplete ? 'completed' : 'notCompleted'">
 
+                <div class="editInput" v-if="editID === task.id">
+                    <input type="text" v-model="editInput">
 
+                </div>
+                <div class="forLabel" v-else>
                 <label class="container">{{task.Title}}
                     <input type="checkbox" @change="changeCheck(task)" :checked="task.isComplete"/>
                     <span class="checkmark"></span>
@@ -20,6 +24,9 @@
                     <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon" @click="editTask(task)"/></span>
                 <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onDelete(index)"/></span>
                 </span>
+
+                    </div>
+
             </li>
 
         </ul>
@@ -36,7 +43,8 @@
             return {
                 newTask: '',
                 editID : '',
-                editInput: ''
+                editInput: '',
+                isEditing: false
             }
         },
 
@@ -56,7 +64,8 @@
             editTask(task) {
                 this.editID = task.id
                 this.editInput = task.Title
-console.log(this.editInput)
+                //this.isEditing = !this.isEditing
+
             },
 
             ...mapMutations([
@@ -121,6 +130,16 @@ console.log(this.editInput)
                     cursor: pointer;
                 }
             }
+
+            .forLabel {
+                width: inherit;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .editInput input {
+            padding: 2px 0;
         }
 
         input {
