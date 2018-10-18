@@ -14,6 +14,11 @@
                 <div class="editInput" v-if="editID === task.id">
                     <input type="text" v-model="editInput">
 
+                    <span class="icons">
+                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task)"/></span>
+                    <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onCancel()"/></span>
+                    </span>
+
                 </div>
                 <div class="forLabel" v-else>
                 <label class="container">{{task.Title}}
@@ -68,6 +73,10 @@
 
             },
 
+            onCancel(){
+                this.editID = ''
+            },
+
             ...mapMutations([
                 'ADD_TASK',
                 'DELETE_TASK'
@@ -81,6 +90,10 @@
 
             onDelete(index) {
               this.DELETE_TASK(index)
+            },
+
+            submitChangeTask(task) {
+                console.log(this.editInput, task.id, task.isComplete)
             }
         }
 
@@ -138,8 +151,15 @@
             }
         }
 
-        .editInput input {
-            padding: 2px 0;
+        .editInput {
+            display: flex;
+            input {
+                padding: 2px 0;
+            }
+
+            .icons {
+                margin-left: 9px;
+            }
         }
 
         input {
