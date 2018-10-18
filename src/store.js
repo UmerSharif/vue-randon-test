@@ -21,6 +21,10 @@ export default new Vuex.Store({
 
         DELETE_TASK(state, index){
             state.Tasks.splice(index,1)
+        },
+
+        ON_EDIT_SUBMIT(state, payload){
+           console.log(payload.index)
         }
     },
     actions: {}

@@ -15,7 +15,7 @@
                     <input type="text" v-model="editInput">
 
                     <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task)"/></span>
+                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task, index)"/></span>
                     <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onCancel()"/></span>
                     </span>
 
@@ -79,7 +79,8 @@
 
             ...mapMutations([
                 'ADD_TASK',
-                'DELETE_TASK'
+                'DELETE_TASK',
+                'ON_EDIT_SUBMIT'
             ]),
             addTask() {
                 if (this.newTask !== '') {
@@ -92,8 +93,10 @@
               this.DELETE_TASK(index)
             },
 
-            submitChangeTask(task) {
-                console.log(this.editInput, task.id, task.isComplete)
+            submitChangeTask(task, index) {
+                this.ON_EDIT_SUBMIT({id: task.id , Title: this.editInput, isComplete : task.isComplete, index: index})
+                //console.log(index)
+
             }
         }
 
