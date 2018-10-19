@@ -4,7 +4,9 @@
 
         <form @submit.prevent="addTask">
             <input class="enterText" placeholder="Enter Task" v-model="newTask"/>
-            <button type="submit"><font-awesome-icon icon="plus-circle" size="lg" class="plus-circle" /></button>
+            <button type="submit">
+                <font-awesome-icon icon="plus-circle" size="lg" class="plus-circle"/>
+            </button>
         </form>
         <hr/>
         <ul>
@@ -15,22 +17,26 @@
                     <input type="text" v-model="editInput">
 
                     <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task)"/></span>
-                    <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onCancel()"/></span>
+                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon"
+                                                          @click="submitChangeTask(task)"/></span>
+                    <span class="delete"><font-awesome-icon icon="minus-circle" size="lg"
+                                                            v-on:click="onCancel()"/></span>
                     </span>
 
                 </div>
                 <div class="forLabel" v-else>
-                <label class="container">{{task.Title}}
-                    <input type="checkbox" @change="changeCheck(task)" :checked="task.isComplete"/>
-                    <span class="checkmark"></span>
-                </label>
-                <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon" @click="editTask(task)"/></span>
-                <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onDelete(index)"/></span>
+                    <label class="container">{{task.Title}}
+                        <input type="checkbox" @change="changeCheck(task)" :checked="task.isComplete"/>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="icons">
+                    <span class="edit"><font-awesome-icon icon="edit" size="lg" class="edit-icon"
+                                                          @click="editTask(task)"/></span>
+                <span class="delete"><font-awesome-icon icon="minus-circle" size="lg"
+                                                        v-on:click="onDelete(index)"/></span>
                 </span>
 
-                    </div>
+                </div>
 
             </li>
 
@@ -47,9 +53,9 @@
         data() {
             return {
                 newTask: '',
-                editID : '',
+                editID: '',
                 editInput: '',
-                isEditing: false
+                isEditing: false,
             }
         },
 
@@ -69,11 +75,10 @@
             editTask(task) {
                 this.editID = task.id
                 this.editInput = task.Title
-                //this.isEditing = !this.isEditing
 
             },
 
-            onCancel(){
+            onCancel() {
                 // setting the editID to nothing to toggle the status
                 this.editID = ''
             },
@@ -91,11 +96,11 @@
             },
 
             onDelete(index) {
-              this.DELETE_TASK(index)
+                this.DELETE_TASK(index)
             },
 
             submitChangeTask(task) {
-                this.ON_EDIT_SUBMIT({id: task.id , Title: this.editInput, isComplete : task.isComplete})
+                this.ON_EDIT_SUBMIT({id: task.id, Title: this.editInput, isComplete: task.isComplete})
                 //console.log(index)
                 this.editID = ''
 
@@ -134,13 +139,13 @@
                 align-items: center;
                 font-size: 1rem;
 
-                .edit{
+                .edit {
                     margin-right: 8px;
                     cursor: pointer;
                 }
 
                 .edit-icon {
-                        color: #5f5f5f;
+                    color: #5f5f5f;
                 }
 
                 .delete {
