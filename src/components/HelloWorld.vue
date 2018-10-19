@@ -15,7 +15,7 @@
                     <input type="text" v-model="editInput">
 
                     <span class="icons">
-                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task, index)"/></span>
+                    <span class="edit"><font-awesome-icon icon="check" size="lg" class="edit-icon" @click="submitChangeTask(task)"/></span>
                     <span class="delete"><font-awesome-icon icon="minus-circle" size="lg" v-on:click="onCancel()"/></span>
                     </span>
 
@@ -74,6 +74,7 @@
             },
 
             onCancel(){
+                // setting the editID to nothing to toggle the status
                 this.editID = ''
             },
 
@@ -93,9 +94,10 @@
               this.DELETE_TASK(index)
             },
 
-            submitChangeTask(task, index) {
-                this.ON_EDIT_SUBMIT({id: task.id , Title: this.editInput, isComplete : task.isComplete, index: index})
+            submitChangeTask(task) {
+                this.ON_EDIT_SUBMIT({id: task.id , Title: this.editInput, isComplete : task.isComplete})
                 //console.log(index)
+                this.editID = ''
 
             }
         }
